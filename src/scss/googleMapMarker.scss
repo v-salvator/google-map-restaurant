@@ -1,0 +1,30 @@
+.google-map-marker {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-image: url(../image/icon-map-marker-green.svg);
+  background-position: center;
+  background-size: cover;
+  &__title {
+    width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &--me {
+      font-weight: bold;
+    }
+  }
+  &--self {
+    background-image: url(../image/icon-map-marker-orange.svg);
+  }
+  &--near {
+    background-image: url(../image/icon-map-marker.svg);
+  }
+  &--center {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+    background-image: none;
+  }
+}

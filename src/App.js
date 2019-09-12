@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useEffect } from "react";
+import { GoogleMapContext } from "./contex";
+import { googleMapReducer, GoogleMapInitState } from "./reducer";
+import { googleMapService } from "./services";
+import { googleMapActions } from "./actions";
+import MainPage from "./entry/main";
 
 function App() {
+  const [googleMapState, googleMapDispatch] = useReducer(
+    googleMapReducer,
+    GoogleMapInitState
+  );
+  // get currenet gps location
+  useEffect(() => {
+    googleMapService
+      .getCurrentGPSLocation()
+      .then(data => {
+        googleMapDispatch(
+          googleMapActions.setDefaultCenter({
+            lat: data.coords.latitude,
+            lng: data.coords.longitude
+          })
+        );
+      })
+      .catch(err => alert(err.message));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GoogleMapContext.Provider value={{ googleMapState, googleMapDispatch }}>
+        <MainPage></MainPage>
+      </GoogleMapContext.Provider>
     </div>
   );
 }

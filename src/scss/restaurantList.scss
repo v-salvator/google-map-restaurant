@@ -1,0 +1,51 @@
+.restaurant-list {
+  // border: 1px solid red;
+  border-radius: 4px;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 500px;
+  max-height: 600px;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  padding: 8px;
+
+  &__filter {
+    color: yellowgreen;
+    text-align: left;
+    &--title {
+      color: yellowgreen;
+      font-weight: bold;
+    }
+    &--options {
+      display: flex;
+      justify-content: space-evenly;
+      cursor: pointer;
+      & > .is-select {
+        color: yellow;
+      }
+    }
+  }
+}
+
+/* rwd for phone */
+@media only screen and (max-width: 600px) {
+  .restaurant-list {
+    position: unset;
+    width: 100%;
+    max-height: unset;
+    margin: 4px 0 0 0;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
+// rwd for ipad
+@media only screen and (max-width: 1080px) and (min-width: 601px) {
+  .restaurant-list {
+    position: unset;
+    width: 100%;
+    max-height: unset;
+    margin: 4px 0 0 0;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
